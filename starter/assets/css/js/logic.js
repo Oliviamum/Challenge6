@@ -30,10 +30,75 @@ function getQuestion() {
             choiceNode.setAttribute("value",choice);
             choiceNode.textContent= i+1 + ". " + choice;
             choiceNode.onclick= questionClick;
-            choicesE1.appendChild(choiceNode);
+            choicesE1.appendChild(choiceNode);          
         });
 }
 
+function questionClick() {
+    if (this.value !== questions[currentQuestionIndex].answer) {
+      time -= 10;
+      if (time < 0) {
+        time = 0;
+      }
+      timerEl.textContent = time;
+      feedbackEl.textContent = "Wrong!";
+    } else {
+      feedbackEl.textContent = "Correct!";
+    }
+    feedbackEl.setAttribute("class", "feedback");
+    setTimeout(function() {
+      feedbackEl.setAttribute("class", "feedback hide");
+    }, 1000);
+    currentQuestionIndex++;
+    if (currentQuestionIndex === questions.length) {
+      quizEnd();
+    } else {
+      getQuestion();
+    }
+  }
+  
+  function quizEnd() {
+    clearInterval(timerId);
+    var endScreenEl = document.getElementById("end-screen");
+    endScreenEl.removeAttribute("class");
+    var finalScoreEl = document.getElementById("final-score");
+    finalScoreEl.textContent = time;
+    questionsEl.setAttribute("class", "hide");
+  }
+  
+  function clockTick() {
+    time--;
+    timerEl.textContent = time;
+    if (time <= 0) {
+      quizEnd();
+    }
+  }
+  
+  function saveHighscore() {
+    var initials = initialsEl.value.trim();
+    if (initials !== "") {
+      var highscores =
+        JSON.parse(window.localStorage.getItem("highscores")) || [];
+      var newScore = {
+        score: time,
+        initials: initials
+      };
+      highscores.push(newScore);
+      window.localStorage.setItem("highscores", JSON.stringify(highscores));
+      window.location.href = "highscores.html";
+    }
+  }
+  
+  function checkForEnter(event) {
+    if (event.key === "Enter") {
+      saveHighscore();
+    }
+  }
+  
+  submitBtn.onclick = saveHighscore;
+  startBtn.onclick = startQuiz;
+  initialsEl.onkeyup = checkForEnter;
+  
 
 
 
