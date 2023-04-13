@@ -18,7 +18,7 @@ var questions = [
         title: "What is the output of console.log(typeof []) in JavaScript?",
         choices: ["object", "array", "undefined", "string"],
         answer: "object"
-    }
+    },
     {
         title: "What is the purpose of the 'use strict' directive in JavaScript?",
         choices: ["To enable strict mode", "To disable strict mode", "To allow silent errors", "To throw more exceptions"],
@@ -33,17 +33,17 @@ var questions = [
         title: "Which function is used to execute a piece of code after a specified time interval in JavaScript?",
         choices: ["setTimeout()", "setInterval()", "clearTimeout()", "clearInterval()"],
         answer: "setTimeout()"
-    }  
+    },
     {
         title: "What is the output of console.log(0.1 + 0.2 === 0.3) in JavaScript?",
         choices: ["true", "false", "undefined", "NaN"],
         answer: "false"
-    }
+    },
     {
         title: "Which method can be used to join two or more arrays in JavaScript?",
         choices: ["concat()", "push()", "join()", "slice()"],
         answer: "concat()"
-    }
+    },
     {
         title: "What is the purpose of the 'this' keyword in JavaScript?",
         choices: ["To refer to the current object", "To refer to the global object", "To create a new object", "To delete an object"],

@@ -9,15 +9,15 @@ highscores.sort((a, b) => b.score - a.score);
 //displayhighscores in HTML
 highscores.forEach(function(score) {
     const li = document.createElement("li");
-    li.textContent = `${score.initials}: ${score.score}`;
+    li.textContent = `${score.initials}: '${score.score}`;
     highscoresList.appendChild(li);
 });
 
 //Clear highscores list when button is clicked
 const clearButton = document.getElementById("clear");
 clearButton.addEventListener("click",()=> {
-    localsStorage.removeItem("highscores");
-    highscoresList.innerHTML = "";
+ localStorage.removeItem("highscores");
+ highscoresList.innerHTML = "";
 });
 
 
